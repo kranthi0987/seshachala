@@ -1,0 +1,95 @@
+<html><body>Hello world   <script id="source" language="javascript" type="text/javascript">
+	$(function() {  
+	$("#ajaxform").submit(function(e)
+	{
+		e.preventDefault(); //STOP default action
+		if(validateEmail($("#eone").val())==false && $("#none").val()!='' && $("#mone").val()!=''){
+			
+					var postData = $(this).serializeArray();
+					var formURL = $(this).attr("action");
+					
+					$.ajax(
+					{
+						url : formURL,
+						type: "POST",
+						data : postData,
+						success:function(data, textStatus, jqXHR) 
+						{
+							
+							//data: return data from server
+							//alert(data);
+							if(data == "yes")
+							{
+								alert("submitted!. our coordinator will respond shortly");	
+							}
+							else{
+								alert("server is busy try after some tme");	
+							}
+							
+						},
+						error: function(jqXHR, textStatus, errorThrown) 
+						{
+							alert("server is busy try after some tme");
+							//if fails      
+						}
+					});
+			
+		}
+		else{
+			alert("fill your details");	
+		}
+		
+	});
+	
+	
+	 function validateEmail($email) {
+			  var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+			  if( !emailReg.test( $email ) ) {
+				return false;
+			  } 
+			  else {
+				return true;
+		  	  }
+		}
+
+	$("#subscribeform").submit(function(e)
+	{
+		e.preventDefault(); //STOP default action
+		if(validateEmail($("#appendedPrependedInput").val())==false){	
+			var postData = $(this).serializeArray();
+			var formURL = $(this).attr("action");
+			
+			$.ajax(
+			{
+				url : formURL,
+				type: "POST",
+				data : postData,
+				success:function(data, textStatus, jqXHR) 
+				{
+					if(data == "yes")
+					{
+						alert("Your mail is rgistered for our news and updates");	
+					}
+					else{
+						alert("server is busy try after some tme");	
+					}
+				},
+				error: function(jqXHR, textStatus, errorThrown) 
+				{
+					alert("server is busy try after some tme");
+						  
+				}
+			});
+		}
+		else
+		{
+			alert("enter valid email");	
+		}
+		e.preventDefault(); //STOP default action
+	});
+	 
+	//$("#ajaxform").submit(); //Submit  the FORM
+	})
+  </script>
+
+</body></html>

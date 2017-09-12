@@ -1,0 +1,8 @@
+RewriteEngine on
+
+RewriteCond %{HTTP_HOST} ^seshachalavanadarshani\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.seshachalavanadarshani\.com$
+RewriteRule ^sites\/?$ "http\:\/\/seshachalavanadarshani\.com\/" [R=301,L]
+
+
+# Always use https for secure connections # Replace 'www.seshachalavanadarshani.com' with your domain name # (as it appears on your SSL certificate) RewriteEngine On RewriteCond %{SERVER_PORT} 80 RewriteRule ^(.*)$ https://www.seshachalavanadarshani.com/$1 [R=301,L]

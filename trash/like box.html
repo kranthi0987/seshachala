@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="fb-like-box" data-href="https://www.facebook.com/talakonawaterfalls" data-width="292" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true"></div>
+  <script id="source" language="javascript" type="text/javascript">
+	$(function() {  
+	$("#ajaxform").submit(function(e)
+	{
+		e.preventDefault(); //STOP default action
+		if(validateEmail($("#eone").val())==false && $("#none").val()!='' && $("#mone").val()!=''){
+			
+					var postData = $(this).serializeArray();
+					var formURL = $(this).attr("action");
+					
+					$.ajax(
+					{
+						url : formURL,
+						type: "POST",
+						data : postData,
+						success:function(data, textStatus, jqXHR) 
+						{
+							
+							//data: return data from server
+							//alert(data);
+							if(data == "yes")
+							{
+								alert("submitted!. our coordinator will respond shortly");	
+							}
+							else{
+								alert("server is busy try after some tme");	
+							}
+							
+						},
+						error: function(jqXHR, textStatus, errorThrown) 
+						{
+							alert("server is busy try after some tme");
+							//if fails      
+						}
+					});
+			
+		}
+		else{
+			alert("fill your details");	
+		}
+		
+	});
+	
+	
+	 function validateEmail($email) {
+			  var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+			  if( !emailReg.test( $email ) ) {
+				return false;
+			  } 
+			  else {
+				return true;
+		  	  }
+		}
+
+	$("#subscribeform").submit(function(e)
+	{
+		e.preventDefault(); //STOP default action
+		if(validateEmail($("#appendedPrependedInput").val())==false){	
+			var postData = $(this).serializeArray();
+			var formURL = $(this).attr("action");
+			
+			$.ajax(
+			{
+				url : formURL,
+				type: "POST",
+				data : postData,
+				success:function(data, textStatus, jqXHR) 
+				{
+					if(data == "yes")
+					{
+						alert("Your mail is rgistered for our news and updates");	
+					}
+					else{
+						alert("server is busy try after some tme");	
+					}
+				},
+				error: function(jqXHR, textStatus, errorThrown) 
+				{
+					alert("server is busy try after some tme");
+						  
+				}
+			});
+		}
+		else
+		{
+			alert("enter valid email");	
+		}
+		e.preventDefault(); //STOP default action
+	});
+	 
+	//$("#ajaxform").submit(); //Submit  the FORM
+	})
+  </script>
+
+</body>
+</html>
